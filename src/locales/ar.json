@@ -1,0 +1,44 @@
+{
+  "app": {
+    "title": "داونلي",
+    "missingDep": "yt-dlp مفقود"
+  },
+  "tabs": {
+    "downloads": "تحميل",
+    "settings": "الإعدادات",
+    "logs": "وحدة التحكم"
+  },
+  "download": {
+    "urlLabel": "رابط الفيديو",
+    "urlPlaceholder": "https://youtube.com/watch?v=...",
+    "formatLabel": "الصيغة",
+    "qualityLabel": "الجودة",
+    "button": "تحميل",
+    "downloading": "جاري التحميل...",
+    "formats": {
+      "bestVideo": "أفضل فيديو + صوت",
+      "videoOnly": "فيديو فقط",
+      "audioOnly": "صوت فقط"
+    }
+  },
+  "settings": {
+    "title": "تفضيلات",
+    "downloadLocation": "مسار التحميل",
+    "changeButton": "تغيير",
+    "showLogs": "عرض سجلات التصحيح الخام",
+    "loading": "جاري تحميل الإعدادات..."
+  },
+  "status": {
+    "idle": "خامل",
+    "starting": "بدء...",
+    "inProgress": "جار التحميل",
+    "completed": "مكتمل",
+    "error": "خطأ",
+    "cancelled": "ملغى",
+    "saved": "حفظ في {{path}}"
+  },
+  "logs": {
+    "title": "سجلات التطبيق",
+    "empty": "لا توجد سجلات متاحة"
+  }
+}

@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply antialiased;
+  }
+  body {
+    @apply bg-background text-white min-h-screen font-sans overflow-hidden selection:bg-primary/30;
+  }
+  
+  /* Smooth Scrollbar for elderly/accessibility preference */
+  * {
+     scrollbar-width: thin;
+     scrollbar-color: #333 transparent;
+  }
+}
+
+/* Custom Scrollbar for Logs */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-surface;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-secondary/30 rounded-full border-2 border-surface;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-secondary/50;
+}

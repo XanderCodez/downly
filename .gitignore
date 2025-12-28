@@ -1,0 +1,35 @@
+# Dependencies
+node_modules/
+
+# Production
+dist/
+release/
+
+# System
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.local
+
+# IDE
+.idea/
+.vscode/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+error.log
+
+# Mac
+.AppleDouble
+.LSOverride
+
+# Resources (Uncomment if you want to exclude binaries, but user wanted "install everywhere", so maybe keep them? usually binaries are not committed, but for this simpler setup maybe keep them? The prompt said "upload this project", usually implies source code. But the binaries are needed for the build. I will exclude them to be safe/standard and let the download script handle it, but wait, the download script is postinstall. If I exclude them, a fresh clone needs to run `npm install` to get them. That works.)
+# Actually, standard practice: don't commit binaries. The download script handles it.
+resources/yt-dlp/mac/
+resources/yt-dlp/win/
+resources/yt-dlp/linux/
+
+# But keep the directories themselves if needed? No, script handles it.

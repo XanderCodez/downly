@@ -1,0 +1,30 @@
+{
+  "tabs": {
+    "downloads": "Downloads",
+    "settings": "Settings",
+    "logs": "Logs"
+  },
+  "download": {
+    "urlLabel": "Video URL",
+    "urlPlaceholder": "https://www.youtube.com/watch?v=...",
+    "formatLabel": "Format",
+    "qualityLabel": "Quality",
+    "button": "Download",
+    "downloading": "Downloading...",
+    "formats": {
+      "bestVideo": "Video + Audio (Best)",
+      "videoOnly": "Video Only",
+      "audioOnly": "Audio Only (MP3)"
+    }
+  },
+  "settings": {
+    "title": "Application Settings",
+    "downloadLocation": "Default Download Location",
+    "changeButton": "Change",
+    "showLogs": "Show raw internal logs"
+  },
+  "logs": {
+    "title": "Terminal Output",
+    "empty": "No logs yet..."
+  }
+}
