@@ -1,5 +1,3 @@
-# Insahhallah
-
 A sleek, cross-platform YouTube downloader built with Electron, React, TypeScript, and yt-dlp.
 
 ## Features
