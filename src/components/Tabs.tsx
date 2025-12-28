@@ -13,7 +13,7 @@ const Tabs: React.FC<Props> = ({ activeTab, onTabChange }) => {
   const { t } = useTranslation();
   const tabs = [
     { id: TabId.DOWNLOADS, label: t('tabs.downloads'), icon: Download },
-    { id: TabId.SETTINGS, label: t('tabs.settings'), icon: Settings },
+    // { id: TabId.SETTINGS, label: t('tabs.settings'), icon: Settings },
     { id: TabId.LOGS, label: t('tabs.logs'), icon: Terminal },
   ] as const;
 

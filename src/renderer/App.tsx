@@ -39,9 +39,6 @@ const App: React.FC = () => {
       {/* Draggable Header Area */}
       <div className="flex-none p-6 border-b border-white/5 bg-surface/30 backdrop-blur-md z-10 draggable">
         <div className="max-w-4xl mx-auto flex items-center justify-between">
-          <h1 className="text-3xl font-bold text-white tracking-tight">
-            Downly
-          </h1>
           {isYtDlpMissing && (
             <div className="flex items-center text-sm font-medium text-danger bg-danger/10 px-4 py-2 rounded-full border border-danger/20 animate-pulse">
               {t('app.missingDep')}
@@ -64,7 +61,12 @@ const App: React.FC = () => {
       <div className="flex-1 overflow-y-auto px-6 py-4 pb-48 relative custom-scrollbar">
         <div className="max-w-4xl mx-auto h-full">
           <div className={`transition-all duration-300 ${activeTab === TabId.DOWNLOADS ? 'block animate-in fade-in slide-in-from-bottom-4' : 'hidden'}`}>
-            <DownloadForm />
+            <div className='mb-5'>
+              <Settings />
+            </div>
+            <div className='mb-10'>
+              <DownloadForm />
+            </div>
           </div>
           <div className={`transition-all duration-300 ${activeTab === TabId.SETTINGS ? 'block animate-in fade-in slide-in-from-bottom-4' : 'hidden'}`}>
             <Settings />
