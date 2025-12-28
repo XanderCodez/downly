@@ -12,6 +12,7 @@ const DownloadForm: React.FC<Props> = () => {
   const { t } = useTranslation();
   const [url, setUrl] = useState('');
   const [isFetchingInfo, setIsFetchingInfo] = useState(false);
+  const [fetchStatusMessage, setFetchStatusMessage] = useState('');
   const [videoInfo, setVideoInfo] = useState<YtDlpInfo | null>(null);
   const [selectedFormatId, setSelectedFormatId] = useState<string>('');
 
@@ -87,6 +88,42 @@ const DownloadForm: React.FC<Props> = () => {
 
     // return () => clearTimeout(timer);
   }, [url]);
+
+  // Rotating messages for fetch duration - 10+ levels, non-repeatable
+  useEffect(() => {
+    let interval: any;
+    const messages = [
+      "Establishing connection to YouTube...",
+      "Handshaking with video server...",
+      "Analyzing video metadata...",
+      "Parsing streaming manifests...",
+      "Checking available video codecs...",
+      "Verifying audio track quality...",
+      "Calculating file sizes...",
+      "This is taking a bit longer than usual...",
+      "Must be a large video or playlist...",
+      "Still processing, please wait...",
+      "Finalizing download options...",
+      "Almost ready, preparing formats..."
+    ];
+
+    if (isFetchingInfo) {
+      setFetchStatusMessage(messages[0] || '');
+      let index = 0;
+      interval = setInterval(() => {
+        index++;
+        // Stop at the last message, do not repeat
+        if (index < messages.length) {
+          setFetchStatusMessage(messages[index] || '');
+        }
+      }, 1500); // Change every 1.5s to cycle through them
+    } else {
+      setFetchStatusMessage('');
+    }
+    return () => {
+      if (interval) clearInterval(interval);
+    };
+  }, [isFetchingInfo]);
 
 
   useEffect(() => {
@@ -241,8 +278,14 @@ const DownloadForm: React.FC<Props> = () => {
   const formatBytes = (bytes: number) => {
     if (bytes === 0) return '...'; // Don't show 0 B logic for total here
     const k = 1024;
-    const sizes = ['B', 'KiB', 'MiB', 'GiB', 'TiB'];
-    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    const sizes = ['B', 'KB', 'MB', 'GB', 'TB'];
+    let i = Math.floor(Math.log(bytes) / Math.log(k));
+
+    // Force GB for sizes > 1000 MB (1,048,576,000 bytes)
+    if (i === 2 && bytes >= 1000 * 1024 * 1024) {
+      i = 3;
+    }
+
     return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
   };
 
@@ -270,7 +313,7 @@ const DownloadForm: React.FC<Props> = () => {
             )}
           </div>
           <div className="h-6 mt-2 pl-1">
-            {isFetchingInfo && <p className="text-sm text-primary font-medium animate-pulse">Analyzing URL and fetching formats...</p>}
+            {isFetchingInfo && <p className="text-sm text-primary font-medium animate-pulse">{fetchStatusMessage}</p>}
           </div>
         </div>
 
@@ -304,7 +347,7 @@ const DownloadForm: React.FC<Props> = () => {
                   return (
                     <option key={f.format_id} value={f.format_id} className="bg-surface text-lg py-2">
                       {f.resolution || 'Audio'} • {f.ext.toUpperCase()}
-                      {f.filesize ? ` • ${(f.filesize / 1024 / 1024).toFixed(1)} MB` : ''}
+                      {f.filesize ? ` • ${formatBytes(f.filesize)}` : ''}
                       {isVideoOnly ? ' (High Quality + Audio)' : ''}
                       {f.format_note ? ` • ${f.format_note}` : ''}
                     </option>
